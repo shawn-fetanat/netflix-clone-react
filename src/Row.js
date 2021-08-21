@@ -13,7 +13,9 @@ function Row({ title, fetchUrl, isLargeRow }) {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      setMovies(request.data.results);
+      setMovies(
+        request.data.results.filter((movie) => movie.poster_path != null)
+      );
       return request;
     }
     fetchData();
